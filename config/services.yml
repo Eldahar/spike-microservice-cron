@@ -1,0 +1,17 @@
+parameters:
+  microservice.command.class: Microservice\CoreBundle\Command\MicroserviceCommand
+  aggregate.handler.class: Microservice\CommandBundle\Handler\AggregateHandler
+  error.handler.class: Microservice\CoreBundle\Handler\ErrorHandler
+
+services:
+  microservice.command:
+    class: %microservice.command.class%
+    arguments:
+      - "@aggregate.handler"
+      - "@error.handler"
+
+  aggregate.handler:
+    class: %aggregate.handler.class%
+
+  error.handler:
+    class: %error.handler.class%
